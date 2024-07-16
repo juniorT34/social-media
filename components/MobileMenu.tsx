@@ -9,7 +9,6 @@ import { links } from '../constants';
 const MobileMenu = () => {
     const [isOpen, setIsOpen] = useState(false)
     const pathname = usePathname()
-    console.log("current path", pathname)
   return (
     <div className='md:hidden'>
         <RxHamburgerMenu className={`w-6 h-6 text-blue-500 cursor-pointer hover:text-blue-400 ${isOpen ? "hidden":""}`} onClick={() => setIsOpen(!isOpen)} />
