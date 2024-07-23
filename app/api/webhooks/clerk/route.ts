@@ -50,7 +50,7 @@ export async function POST(req: Request) {
 
   // Do something with the payload
   // For this guide, you simply log the payload to the console
-  const { id } = evt.data;
+//   const { id } = evt.data;
   const eventType = evt.type;
 //   console.log(`Webhook with and ID of ${id} and type of ${eventType}`)
 //   console.log('Webhook body:', body)
@@ -62,7 +62,6 @@ if(eventType === "user.created"){
     await prisma.user.create({
       data: {
         id: evt.data.id,
-        clerkId: evt.data.id,
         username: JSON.parse(body).data.username,
         avatar: JSON.parse(body).data.image_url || "/noAvatar.png",
         cover: "/noCover.png",
@@ -84,7 +83,7 @@ if(eventType === "user.created"){
 // USER UPDATED
 if(eventType === "user.updated"){
   try {
-    await prisma.user.update({
+    await prisma.user.updateMany({
       where:{
         id: evt.data.id,
       },
@@ -107,7 +106,7 @@ if(eventType === "user.updated"){
 // USER DELETED
 if(eventType === "user.deleted"){
   try {
-    await prisma.user.delete({
+    await prisma.user.deleteMany({
       where:{
         id: evt.data.id,
       },
