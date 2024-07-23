@@ -5,7 +5,6 @@ import Navbar from "../components/Navbar";
 import { ClerkProvider } from "@clerk/nextjs";
 
 
-
 const poppins = Poppins({ subsets: ["latin"],
   weight:["400","700"],
   variable:"--font-poppins" });
