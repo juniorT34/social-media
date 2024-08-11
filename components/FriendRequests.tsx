@@ -1,8 +1,25 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from "next/image"
+import { auth } from '@clerk/nextjs/server'
+import { prisma } from '../lib/client'
 
-const FriendRequests = () => {
+const FriendRequests = async() => {
+    const {userId} = auth()
+    if(!userId){
+        return null
+    }
+    const requests = await prisma.followRequest.findMany({
+        where:{
+            receiverId: userId
+        },
+        include:{
+            sender: true,
+        }
+    })
+
+    if(requests.length === 0) return null
+
   return (
     <div className='p-4 bg-white rounded-lg shadow-md text-sm flex flex-col gap-4'>
         {/* TOP */}
@@ -21,26 +38,7 @@ const FriendRequests = () => {
                 <Image src={"/reject.png"} className='w-5 h-5 cursor-pointer' alt="accept icon" width={16} height={16}/>
             </div>  
         </div>
-        <div className='flex items-center justify-between'>
-            <div className='flex gap-4 items-center'>
-                <Image src={"https://images.pexels.com/photos/27114459/pexels-photo-27114459/free-photo-of-tower-of-the-cathedral-of-arequipa-peru.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"} className='w-10 h-10 object-cover rounded-full' alt="avatar" width={40} height={40} />
-                <span className='font-medium'>Fred Holloway</span>
-            </div>
-            <div className='flex gap-3 items-center justify-end'>
-                <Image src={"/accept.png"} className='w-5 h-5 cursor-pointer' alt="accept icon" width={16} height={16}/>
-                <Image src={"/reject.png"} className='w-5 h-5 cursor-pointer' alt="accept icon" width={16} height={16}/>
-            </div>  
-        </div>
-        <div className='flex items-center justify-between'>
-            <div className='flex gap-4 items-center'>
-                <Image src={"https://images.pexels.com/photos/27114459/pexels-photo-27114459/free-photo-of-tower-of-the-cathedral-of-arequipa-peru.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"} className='w-10 h-10 object-cover rounded-full' alt="avatar" width={40} height={40} />
-                <span className='font-medium'>Fred Holloway</span>
-            </div>
-            <div className='flex gap-3 items-center justify-end'>
-                <Image src={"/accept.png"} className='w-5 h-5 cursor-pointer' alt="accept icon" width={16} height={16}/>
-                <Image src={"/reject.png"} className='w-5 h-5 cursor-pointer' alt="accept icon" width={16} height={16}/>
-            </div>  
-        </div>
+
     </div>
   )
 }

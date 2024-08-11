@@ -9,7 +9,9 @@ import { notFound } from 'next/navigation'
 
 const Profile = async({params} : {params: {username: string }}) => {
   
+  const {userId: currentUserId} = auth()
   const username = params.username
+
   if(username === undefined) return notFound()
 
   const user = await prisma.user.findFirst({
@@ -29,7 +31,6 @@ const Profile = async({params} : {params: {username: string }}) => {
 
   if(!user) return notFound()
   
-  const {userId: currentUserId} = auth()
   let isBlocked;
   if(currentUserId){
     const response = await prisma.block.findFirst({
