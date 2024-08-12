@@ -85,18 +85,24 @@ const UserInfoCard = async({user}:{user: User}) => {
                 <span>Went to {user.school}</span>
             </div>
           }
+          {user.major && 
+            <div className='text-sm flex items-center gap-2'>
+                <Image src={"/school.png"} alt="location icon" width={16} height={16} />
+                <span>Did/Doing  {user.major}</span>
+            </div>
+          }
           {user.work && 
             <div className='text-sm flex items-center gap-2'>
                 <Image src={"/work.png"} alt="location icon" width={16} height={16} />
                 <span>Works at {user.work}</span>
             </div>
           }
-          <div className='flex items-center justify-between gap-2'>
+          <div className='flex items-center flex-col justify-between gap-2'>
              {user.website && <div className='flex items-center gap-1'>
                   <Image src={"/link.png"} alt="location icon" width={16} height={16} />
                   <Link href={user.website} className='text-blue-500 font-medium'>{user.website}</Link>
               </div>}
-
+              
               {user.createdAt && <div className='flex gap-1 items-center'>
                   <Image src={"/date.png"} alt="location icon" width={16} height={16} />
                   <span className='text-xs'>Joined {formattedDate}</span>
