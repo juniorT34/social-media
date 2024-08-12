@@ -60,7 +60,7 @@ const UserInfoCard = async({user}:{user: User}) => {
       {/* TOP */}
       <div className='flex items-center gap-4 justify-between'>
           <span className='text-gray-500'>User Information</span>
-          {currentUserId === user.id ? (<UpdateUser />) : 
+          {currentUserId === user.id ? (<UpdateUser user={user}/>) : 
           (<Link href={"/"} className='text-blue-500 text-xs underline'>See all</Link>)
         }
       </div>
