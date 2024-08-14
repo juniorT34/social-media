@@ -253,3 +253,7 @@ export const addComment = async(postId: string, description: string) =>{
         throw new Error("Something went wrong")
     }
 }
+
+export const addPost = async() =>{
+    
+}
