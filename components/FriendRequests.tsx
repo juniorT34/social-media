@@ -19,7 +19,7 @@ const FriendRequests = async() => {
         }
     })
 
-    // if(requests.length === 0) return null
+    if(requests.length === 0) return null
 
   return (
     <div className='p-4 bg-white rounded-lg shadow-md text-sm flex flex-col gap-4'>
