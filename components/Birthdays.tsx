@@ -16,7 +16,7 @@ const Birthdays = () => {
                 <span className='font-medium'>Fred Holloway</span>
             </div>
             <div className='flex gap-3 items-center justify-end'>
-                <button className='bg-blue-500 text-white text-xs px-2 py-1 rounded-lg'>Make a wish</button>
+                <button className='bg-blue-500 text-white text-xs px-2 py-1 rounded-lg'>Honor</button>
             </div>  
         </div>
         {/* UPCOMING */}

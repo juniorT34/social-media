@@ -70,7 +70,7 @@ const CommentList = ({comments,postId}: {comments: CommentWithUser[],postId: str
             {optimisticComments.map((comment) =>(
                 <div className='flex gap-4 justify-between mt-6' key={comment.id}>
                 {/* AVATAR */}
-                <Image src={comment.user.avatar || "/noAvatar"} alt="" width={40} height={40} className='w-10 h-10 rounded-full' />
+                <Image src={comment.user.avatar || "/noAvatar.png"} alt="" width={40} height={40} className='w-10 h-10 rounded-full' />
                 {/* DESCRIPTION */}
                 <div className='flex flex-col gap-2 flex-1'>
                     <span className='font-medium text-xs md:text-sm'>{comment.user.name && comment.user.surname ? comment.user.name + " " + comment.user.surname : comment.user.username}</span>

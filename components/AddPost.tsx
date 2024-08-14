@@ -5,6 +5,8 @@ import { auth } from '@clerk/nextjs/server'
 import { useUser } from "@clerk/nextjs"
 import { useState } from "react"
 import { CldUploadWidget } from "next-cloudinary"
+import AddPostBtn from "./AddPostBtn"
+import { addPost } from "../lib/actions"
 const AddPost = () => {
   const {user,isLoaded} = useUser()
   const [description, setDescription] = useState("")
@@ -24,11 +26,12 @@ const AddPost = () => {
       <Image src={user?.imageUrl || "noAvatar.png"} className='w-12 h-12 object-cover rounded-full' alt="avatar" width={48} height={48} />
       {/* POST */}
       <div className='flex-1'>
-        <form action="" className='flex gap-4'>
+        <form action={(formData) => addPost(formData, img?.secure_url || "")} className='flex gap-4 items-center'>
           {/* INPUT */}
             <textarea name="description" id="" value={description} placeholder="What's on your mind?" className='flex-1 w-full md:h-24 h-20 resize-none bg-slate-100 rounded-lg p-2 outline-none' onChange={(e) => setDescription(e.target.value)}></textarea>
             <Image src={"/emoji.png"} className='w-5 h-5 self-end' alt="avatar" width={20} height={20}/>
-            <button type='submit'>Post</button>
+            {/* <button type='submit'>Post</button> */}
+            <AddPostBtn />
         </form>
         {/* POST OPTIONS */}
         <div className='flex items-center gap-4 mt-4 text-gray-400 flex-wrap'>

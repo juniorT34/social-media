@@ -44,12 +44,13 @@ const Feed = async({username}:{username: string}) => {
       }
     })
     const followingIds = following.map(item=> item.followingId)
-    console.log(followingIds)
+    const ids = [userId,...followingIds]
+  
 
     posts = await prisma.post.findMany({
       where:{
         userId:{
-          in: followingIds
+          in: ids
         }
       },
       include:{
@@ -75,7 +76,7 @@ const Feed = async({username}:{username: string}) => {
 
 
   return (
-    <div className='p-4 bg-white shadow-md flex flex-col gap-1'>
+    <div className='p-4 bg-white shadow-md flex flex-col gap-1 mb-5'>
       {posts?.length ? (posts?.map((post) =>(
         <Posted key={post.id} post={post}/>
       ))) : "No posts found!"}
