@@ -28,7 +28,7 @@ const Posted = ({post}: {post:PostType}) => {
         {/* INTERACTIONS */}
         <PostInteraction postId={post.id} likes={post.likes.map(like => like.userId)} comments={post._count.comments}/>
         {/* COMMENTS */}
-            <Comments />
+            <Comments  postId={post.id}/>
     </div>
   )
 }
